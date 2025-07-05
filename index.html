@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #667eea;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-info .title {
+            font-size: 1.3rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .profile-info .bio {
+            font-size: 1.1rem;
+            color: #34495e;
+            max-width: 600px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            padding: 12px 25px;
+            color: #2c3e50;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2::before {
+            content: '🚀';
+            font-size: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .project-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .project-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="animate-in">
+            <div class="header-content">
+                <img src="https://iconbu.com/wp-content/uploads/2022/06/%E3%81%A8%E3%81%91%E3%81%A1%E3%82%83%E3%81%86%E7%8C%AB%E3%81%95%E3%82%93.jpg" alt="Profile Picture" class="profile-image">
+                <div class="profile-info">
+                    <h1>Your Name</h1>
+                    <div class="title">Full Stack Web Developer</div>
+                    <div class="bio">
+                        情熱的なWeb開発者として、HTML、CSS、JavaScriptを駆使してユーザーに素晴らしい体験を提供することに専念しています。
+                        モダンなWebテクノロジーを使用した革新的なソリューションの開発に取り組んでいます。
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="reveal">
+            <ul>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Skills Section -->
+            <div class="card reveal" id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">HTML5</div>
+                    <div class="skill-item">CSS3</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">MongoDB</div>
+                    <div class="skill-item">Express.js</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">Vue.js</div>
+                    <div class="skill-item">TypeScript</div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="card reveal" id="projects">
+                <h2>Featured Projects</h2>
+                <div class="project-item">
+                    <h3>E-Commerce Platform</h3>
+                    <p>レスポンシブなEコマースサイト。モダンなUIとスムーズなユーザーエクスペリエンスを実現。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Task Management App</h3>
+                    <p>直感的なタスク管理アプリケーション。ドラッグ&ドロップ機能とリアルタイム更新を実装。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">CSS Grid</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Weather Dashboard</h3>
+                    <p>リアルタイム天気情報を表示するダッシュボード。美しいアニメーションとグラフィックス。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">API Integration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section reveal" id="contact">
+            <h2>Let's Connect</h2>
+            <div class="contact-links">
+                <a href="https://github.com/yourusername" class="contact-link">
+                    <span>📱</span> GitHub
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" class="contact-link">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="mailto:your.email@example.com" class="contact-link">
+                    <span>✉️</span> Email
+                </a>
+                <a href="https://twitter.com/yourusername" class="contact-link">
+                    <span>🐦</span> Twitter
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Reveal animations on scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Initial call to reveal elements already in view
+        revealOnScroll();
+
+        // Typing effect for the title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Apply typing effect to the main title
+        window.addEventListener('load', function() {
+            const titleElement = document.querySelector('.profile-info h1');
+            const originalText = titleElement.textContent;
+            typeWriter(titleElement, originalText, 150);
+        });
+
+        // Interactive skill items
+        document.querySelectorAll('.skill-item').forEach(skill => {
+            skill.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Particle background effect
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.position = 'fixed';
+            particlesContainer.style.top = '0';
+            particlesContainer.style.left = '0';
+            particlesContainer.style.width = '100%';
+            particlesContainer.style.height = '100%';
+            particlesContainer.style.pointerEvents = 'none';
+            particlesContainer.style.zIndex = '-1';
+            document.body.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+                particle.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 3 + 2}s infinite ease-in-out`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Add floating animation for particles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        createParticles();
+
+        // Add intersection observer for better performance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
